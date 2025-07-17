@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>导航</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- 字体 & 图标 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+    <style>
+        :root{
+            --bg:#f7f8fa;
+            --card:#fff;
+            --text:#333;
+            --accent:#0077ff;
+        }
+        body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+        header{padding:60px 20px 40px;text-align:center}
+        h1{font-size:2.2rem;margin:0 0 10px}
+        #searchBox{
+            max-width:400px;width:90%;padding:12px 20px;
+            border:1px solid #ddd;border-radius:30px;font-size:1rem;
+            outline:none;transition:.3s
+        }
+        #searchBox:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,119,255,.2)}
+        main{max-width:1000px;margin:0 auto;padding:0 20px 60px}
+        .group{margin-bottom:40px}
+        .group h2{font-size:1.3rem;margin:0 0 15px;display:flex;align-items:center}
+        .group h2 i{margin-right:8px;color:var(--accent)}
+        .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+        .card{
+            background:var(--card);border-radius:12px;padding:18px 12px;
+            text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.05);
+            transition:.2s;text-decoration:none;color:inherit
+        }
+        .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+        .card i{font-size:1.8rem;margin-bottom:8px;color:var(--accent)}
+        .card span{display:block;font-size:.9rem}
+        /* 响应式 */
+        @media(max-width:600px){
+            .cards{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>我的导航站</h1>
+    <input id="searchBox" type="text" placeholder="搜索站点 …" onkeyup="filterCards()">
+</header>
+
+<main>
+    <!-- 分组 1：常用工具 -->
+    <section class="group">
+        <h2><i class="fas fa-toolbox"></i>常用工具</h2>
+        <div class="cards">
+            <a class="card" href="https://github.com" target="_blank">
+                <i class="fab fa-github"></i><span>GitHub</span>
+            </a>
+            <a class="card" href="https://www.figma.com" target="_blank">
+                <i class="fab fa-figma"></i><span>Figma</span>
+            </a>
+            <a class="card" href="https://translate.google.com" target="_blank">
+                <i class="fas fa-language"></i><span>翻译</span>
+            </a>
+            <!-- 可继续添加 -->
+        </div>
+    </section>
+
+    <!-- 分组 2：学习资源 -->
+    <section class="group">
+        <h2><i class="fas fa-graduation-cap"></i>学习资源</h2>
+        <div class="cards">
+            <a class="card" href="https://developer.mozilla.org" target="_blank">
+                <i class="fab fa-firefox-browser"></i><span>MDN</span>
+            </a>
+            <a class="card" href="https://leetcode.com" target="_blank">
+                <i class="fas fa-code"></i><span>LeetCode</span>
+            </a>
+            <!-- 可继续添加 -->
+        </div>
+    </section>
+
+    <!-- 更多分组可照此格式继续复制 -->
+</main>
+
+<script>
+/* 实时搜索 */
+function filterCards(){
+    const val = document.getElementById('searchBox').value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card=>{
+        const txt = card.querySelector('span').textContent.toLowerCase();
+        card.style.display = txt.includes(val) ? '' : 'none';
+    });
+}
+</script>
+</body>
+</html>
