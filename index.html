@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>导航</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- 字体 & 图标 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
     <style>
@@ -13,16 +12,52 @@
             --card:#fff;
             --text:#333;
             --accent:#0077ff;
+            --shadow:rgba(0,0,0,.05);
         }
-        body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
-        header{padding:60px 20px 40px;text-align:center}
+        [data-theme="dark"]{
+            --bg:#0d1117;
+            --card:#161b22;
+            --text:#c9d1d9;
+            --accent:#58a6ff;
+            --shadow:rgba(0,0,0,.3);
+        }
+        
+        body{
+            margin:0;
+            font-family:Inter,Helvetica,Arial,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            transition:background .3s,color .3s;
+        }
+        header{
+            padding:60px 20px 40px;
+            text-align:center;
+            position:relative;
+        }
         h1{font-size:2.2rem;margin:0 0 10px}
+        
+        /* 深色模式切换按钮 */
+        #themeToggle{
+            position:absolute;
+            top:20px;
+            right:20px;
+            background:none;
+            border:none;
+            font-size:1.5rem;
+            color:var(--accent);
+            cursor:pointer;
+            transition:.3s;
+        }
+        
         #searchBox{
             max-width:400px;width:90%;padding:12px 20px;
-            border:1px solid #ddd;border-radius:30px;font-size:1rem;
-            outline:none;transition:.3s
+            border:1px solid #444;border-radius:30px;font-size:1rem;
+            outline:none;transition:.3s;
+            background:var(--card);
+            color:var(--text);
         }
-        #searchBox:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,119,255,.2)}
+        #searchBox:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(88,166,255,.2)}
+        
         main{max-width:1000px;margin:0 auto;padding:0 20px 60px}
         .group{margin-bottom:40px}
         .group h2{font-size:1.3rem;margin:0 0 15px;display:flex;align-items:center}
@@ -30,13 +65,13 @@
         .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
         .card{
             background:var(--card);border-radius:12px;padding:18px 12px;
-            text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.05);
+            text-align:center;box-shadow:0 2px 6px var(--shadow);
             transition:.2s;text-decoration:none;color:inherit
         }
-        .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+        .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px var(--shadow)}
         .card i{font-size:1.8rem;margin-bottom:8px;color:var(--accent)}
         .card span{display:block;font-size:.9rem}
-        /* 响应式 */
+        
         @media(max-width:600px){
             .cards{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
         }
@@ -44,12 +79,14 @@
 </head>
 <body>
 <header>
+    <button id="themeToggle" title="切换深色/浅色模式">
+        <i class="fas fa-moon"></i>
+    </button>
     <h1>MR.SteveBean's便签</h1>
     <input id="searchBox" type="text" placeholder="搜索站点 …" onkeyup="filterCards()">
 </header>
 
 <main>
-    <!-- 分组 1：常用工具 -->
     <section class="group">
         <h2><i class="fas fa-toolbox"></i>常用工具</h2>
         <div class="cards">
@@ -62,11 +99,9 @@
             <a class="card" href="https://translate.google.com" target="_blank">
                 <i class="fas fa-language"></i><span>翻译</span>
             </a>
-            <!-- 可继续添加 -->
         </div>
     </section>
 
-    <!-- 分组 2：学习资源 -->
     <section class="group">
         <h2><i class="fas fa-graduation-cap"></i>学习资源</h2>
         <div class="cards">
@@ -76,15 +111,30 @@
             <a class="card" href="https://leetcode.com" target="_blank">
                 <i class="fas fa-code"></i><span>LeetCode</span>
             </a>
-            <!-- 可继续添加 -->
         </div>
     </section>
-
-    <!-- 更多分组可照此格式继续复制 -->
 </main>
 
 <script>
-/* 实时搜索 */
+// 深色模式控制
+const toggleBtn = document.getElementById('themeToggle');
+const icon = toggleBtn.querySelector('i');
+
+// 初始化主题
+if(localStorage.getItem('theme') === 'dark' || 
+  (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+    document.documentElement.setAttribute('data-theme', 'dark');
+    icon.className = 'fas fa-sun';
+}
+
+toggleBtn.onclick = () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+};
+
+// 搜索功能
 function filterCards(){
     const val = document.getElementById('searchBox').value.toLowerCase();
     document.querySelectorAll('.card').forEach(card=>{
