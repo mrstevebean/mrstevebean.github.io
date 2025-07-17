@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>导航</title>
+    <title>MR,stevebean'灯塔</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
@@ -31,10 +31,10 @@
         }
         header{
             padding:60px 20px 40px;
-            text-align:center;
+            text-align:left; /* 关键修改：靠左对齐 */
             position:relative;
         }
-        h1{font-size:2.2rem;margin:0 0 10px}
+        h1{font-size:2.2rem;margin:0 0 20px} /* 增加标题与搜索框间距 */
         
         /* 深色模式切换按钮 */
         #themeToggle{
@@ -50,13 +50,12 @@
         }
         
         #searchBox{
-            max-width:400px;width:90%;padding:12px 20px;
-            border:1px solid #444;border-radius:30px;font-size:1rem;
-            outline:none;transition:.3s;
-            background:var(--card);
-            color:var(--text);
+            max-width:400px;width:90%;padding:12px 16px;
+            border:1px solid #444;border-radius:4px; /* 改为方角 */
+            font-size:1rem;outline:none;transition:.3s;
+            background:var(--card);color:var(--text);
         }
-        #searchBox:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(88,166,255,.2)}
+        #searchBox:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(88,166,255,.2)}
         
         main{max-width:1000px;margin:0 auto;padding:0 20px 60px}
         .group{margin-bottom:40px}
@@ -74,6 +73,7 @@
         
         @media(max-width:600px){
             .cards{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+            header{padding:40px 16px 30px} /* 移动端减小header内边距 */
         }
     </style>
 </head>
@@ -103,13 +103,9 @@
     </section>
 
     <section class="group">
-        <h2><i class="fas fa-graduation-cap"></i>学习资源</h2>
+        <h2><i class="fas fa-graduation-cap"></i>资源</h2>
         <div class="cards">
-            <a class="card" href="https://developer.mozilla.org" target="_blank">
-                <i class="fab fa-firefox-browser"></i><span>MDN</span>
-            </a>
-            <a class="card" href="https://leetcode.com" target="_blank">
-                <i class="fas fa-code"></i><span>LeetCode</span>
+            
             </a>
         </div>
     </section>
@@ -120,7 +116,6 @@
 const toggleBtn = document.getElementById('themeToggle');
 const icon = toggleBtn.querySelector('i');
 
-// 初始化主题
 if(localStorage.getItem('theme') === 'dark' || 
   (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)){
     document.documentElement.setAttribute('data-theme', 'dark');
