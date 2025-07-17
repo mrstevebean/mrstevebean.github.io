@@ -14,8 +14,6 @@
             --accent:#3498db;
             --shadow:0 4px 15px rgba(0,0,0,.08);
             --gradient:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient2:linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient3:linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
         [data-theme="dark"]{
             --bg:#1a1a2e;
@@ -24,7 +22,6 @@
             --accent:#00d2ff;
             --shadow:0 4px 15px rgba(0,0,0,.3);
         }
-        
         *{margin:0;padding:0;box-sizing:border-box}
         body{
             font-family:Inter,Helvetica,Arial,sans-serif;
@@ -33,380 +30,104 @@
             transition:.3s;
             min-height:100vh;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,119,198,.1) 0%, transparent 50%);
         }
-        
-        /* 头部样式 */
         header{
             padding:60px 40px 40px;
             background:var(--gradient);
             color:#fff;
-            position:relative;
-            overflow:hidden;
+            text-align:center;
         }
-        header::before{
-            content:'';
-            position:absolute;
-            top:-50%;
-            right:-50%;
-            width:200%;
-            height:200%;
-            background:radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 70%);
-            animation:float 20s infinite linear;
-        }
-        @keyframes float{
-            0%{transform:rotate(0deg);}
-            100%{transform:rotate(360deg);}
-        }
-        
-        .header-content{
-            position:relative;
-            z-index:1;
-            max-width:1200px;
-            margin:0 auto;
-        }
-        
-        h1{
-            font-size:2.5rem;
-            font-weight:700;
-            margin-bottom:10px;
-            background:linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            background-clip:text;
-        }
-        
-        .subtitle{
-            font-size:1.1rem;
-            opacity:.9;
-            margin-bottom:30px;
-        }
-        
-        /* 搜索框 */
-        .search-container{
-            position:relative;
-            max-width:500px;
-        }
-        #searchBox{
-            width:100%;
-            padding:15px 20px;
-            border:none;
-            border-radius:50px;
-            font-size:1rem;
-            background:rgba(255,255,255,.2);
-            color:#fff;
-            backdrop-filter:blur(10px);
-            outline:none;
-            transition:.3s;
-        }
-        #searchBox::placeholder{color:rgba(255,255,255,.7)}
-        #searchBox:focus{background:rgba(255,255,255,.3)}
-        
-        /* 控制按钮 */
-        .controls{
-            position:absolute;
-            top:20px;
-            right:40px;
-            display:flex;
-            gap:15px;
-        }
-        .control-btn{
-            background:rgba(255,255,255,.2);
-            border:none;
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            color:#fff;
-            cursor:pointer;
-            transition:.3s;
-            backdrop-filter:blur(10px);
-        }
-        .control-btn:hover{background:rgba(255,255,255,.3)}
-        
-        /* 主内容区 */
-        main{
-            max-width:1200px;
-            margin:0 auto;
-            padding:40px 20px;
-        }
-        
-        /* 分类标签 */
-        .category-tabs{
-            display:flex;
-            gap:10px;
-            margin-bottom:30px;
-            flex-wrap:wrap;
-        }
-        .tab{
-            padding:8px 20px;
-            border:none;
-            border-radius:25px;
-            background:var(--card);
-            color:var(--text);
-            cursor:pointer;
-            transition:.3s;
-            box-shadow:var(--shadow);
-        }
-        .tab.active{
-            background:var(--gradient);
-            color:#fff;
-        }
-        
-        /* 网站卡片网格 */
-        .cards-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-            gap:25px;
-            margin-bottom:40px;
-        }
-        
+        h1{font-size:2.5rem;margin-bottom:10px}
+        .subtitle{font-size:1.1rem;opacity:.9}
+        main{max-width:400px;margin:60px auto;padding:0 20px}
         .site-card{
             background:var(--card);
             border-radius:20px;
-            padding:25px;
+            padding:30px;
             box-shadow:var(--shadow);
+            text-align:center;
             transition:.3s;
-            position:relative;
-            overflow:hidden;
         }
-        .site-card::before{
-            content:'';
-            position:absolute;
-            top:0;
-            left:0;
-            right:0;
-            height:4px;
-            background:var(--gradient);
-        }
-        .site-card:hover{
-            transform:translateY(-5px);
-            box-shadow:0 8px 25px rgba(0,0,0,.15);
-        }
-        
-        .site-header{
-            display:flex;
-            align-items:center;
-            margin-bottom:15px;
-        }
+        .site-card:hover{transform:translateY(-5px)}
         .site-icon{
-            width:50px;
-            height:50px;
+            width:60px;height:60px;
+            margin:0 auto 15px;
             border-radius:12px;
-            margin-right:15px;
+            background:#4285f4;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:24px;
-            color:#fff;
+            font-size:28px;color:#fff;
         }
-        
-        .site-title{
-            font-size:1.2rem;
-            font-weight:600;
-            margin-bottom:5px;
-        }
-        
-        .site-desc{
-            color:#666;
-            font-size:.9rem;
-            line-height:1.4;
-        }
-        
-        .site-actions{
-            margin-top:15px;
-            display:flex;
-            gap:10px;
-        }
-        
+        .site-title{font-size:1.3rem;font-weight:600;margin-bottom:10px}
+        .site-desc{color:#666;font-size:.95rem;margin-bottom:20px;line-height:1.4}
         .action-btn{
-            padding:8px 16px;
+            padding:10px 25px;
             border:none;
-            border-radius:20px;
-            font-size:.85rem;
+            border-radius:25px;
+            font-size:1rem;
             cursor:pointer;
-            transition:.3s;
-        }
-        
-        .primary-btn{
             background:var(--gradient);
             color:#fff;
+            text-decoration:none;
+            display:inline-block;
         }
-        
-        .secondary-btn{
-            background:#f0f0f0;
-            color:var(--text);
-        }
-        
-        /* 底部信息 */
-        .footer{
+        footer{
             text-align:center;
             padding:40px;
             color:#666;
         }
-        
-        /* 响应式 */
-        @media(max-width:768px){
-            header{padding:40px 20px 30px}
-            h1{font-size:2rem}
-            .controls{position:static;margin-top:20px}
-            .cards-grid{grid-template-columns:1fr}
+        #themeToggle{
+            position:fixed;
+            top:20px;
+            right:20px;
+            width:40px;height:40px;
+            border:none;
+            border-radius:50%;
+            background:rgba(255,255,255,.2);
+            color:#fff;
+            cursor:pointer;
+            font-size:1.1rem;
+            backdrop-filter:blur(5px);
+            z-index:10;
         }
     </style>
 </head>
 <body>
+    <button id="themeToggle" title="切换深色/浅色模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <header>
-        <div class="header-content">
-            <h1>MR.SteveBean's 灯塔</h1>
-            <p class="subtitle">数字港湾</p>
-            <div class="search-container">
-                <input type="text" id="searchBox" placeholder="搜索你想要的...">
-            </div>
-        </div>
-        
-        <div class="controls">
-            <button class="control-btn" id="themeToggle" title="切换主题">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="control-btn" title="添加新站点">
-                <i class="fas fa-plus"></i>
-            </button>
-            <button class="control-btn" title="刷新">
-                <i class="fas fa-sync"></i>
-            </button>
-        </div>
+        <h1>MR.SteveBean's 灯塔</h1>
+        <p class="subtitle">被世界遗忘之人的数字港湾</p>
     </header>
 
     <main>
-        <!-- 分类标签 -->
-        <div class="category-tabs">
-            <button class="tab active">全部</button>
-            <button class="tab">开发工具</button>
-            <button class="tab">学习资源</button>
-            <button class="tab">设计灵感</button>
-            <button class="tab">实用工具</button>
-        </div>
-
-        <!-- 网站卡片 -->
-        <div class="cards-grid">
-            <!-- GitHub -->
-            <div class="site-card">
-                <div class="site-header">
-                    <div class="site-icon" style="background:#24292f">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div>
-                        <div class="site-title">GitHub</div>
-                        <div class="site-desc">全球最大的代码托管平台</div>
-                    </div>
-                </div>
-                <div class="site-actions">
-                    <button class="action-btn primary-btn">打开</button>
-                    <button class="action-btn secondary-btn">收藏</button>
-                </div>
+        <div class="site-card">
+            <div class="site-icon">
+                <i class="fas fa-language"></i>
             </div>
-
-            <!-- Figma -->
-            <div class="site-card">
-                <div class="site-header">
-                    <div class="site-icon" style="background:#f24e1e">
-                        <i class="fab fa-figma"></i>
-                    </div>
-                    <div>
-                        <div class="site-title">Figma</div>
-                        <div class="site-desc">协作式界面设计工具</div>
-                    </div>
-                </div>
-                <div class="site-actions">
-                    <button class="action-btn primary-btn">打开</button>
-                    <button class="action-btn secondary-btn">收藏</button>
-                </div>
-            </div>
-
-            <!-- Google翻译 -->
-            <div class="site-card">
-                <div class="site-header">
-                    <div class="site-icon" style="background:#4285f4">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <div>
-                        <div class="site-title">Google翻译</div>
-                        <div class="site-desc">强大的在线翻译服务</div>
-                    </div>
-                </div>
-                <div class="site-actions">
-                    <button class="action-btn primary-btn">打开</button>
-                    <button class="action-btn secondary-btn">收藏</button>
-                </div>
-            </div>
-
-            <!-- 更多卡片... -->
-            <div class="site-card">
-                <div class="site-header">
-                    <div class="site-icon" style="background:#00d4aa">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div>
-                        <div class="site-title">MDN文档</div>
-                        <div class="site-desc">Web开发权威参考</div>
-                    </div>
-                </div>
-                <div class="site-actions">
-                    <button class="action-btn primary-btn">打开</button>
-                    <button class="action-btn secondary-btn">收藏</button>
-                </div>
-            </div>
-
-            <div class="site-card">
-                <div class="site-header">
-                    <div class="site-icon" style="background:#ffa116">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div>
-                        <div class="site-title">LeetCode</div>
-                        <div class="site-desc">算法刷题平台</div>
-                    </div>
-                </div>
-                <div class="site-actions">
-                    <button class="action-btn primary-btn">打开</button>
-                    <button class="action-btn secondary-btn">收藏</button>
-                </div>
-            </div>
+            <div class="site-title">Google 翻译</div>
+            <div class="site-desc">强大、免费、即时的在线翻译服务</div>
+            <a href="https://translate.google.com" target="_blank" class="action-btn">立即使用</a>
         </div>
     </main>
 
-    <footer class="footer">
-        <p>Copyright © 2025-1121 </p>
+    <footer>
+        <p>Copyright © 2025-2121</p>
     </footer>
 
     <script>
-        // 深色模式切换
         const toggleBtn = document.getElementById('themeToggle');
         const icon = toggleBtn.querySelector('i');
-        
         toggleBtn.onclick = () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
             icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
         };
-        
-        // 搜索功能
-        document.getElementById('searchBox').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            document.querySelectorAll('.site-card').forEach(card => {
-                const txt = card.querySelector('.site-title').textContent.toLowerCase();
-                card.style.display = txt.includes(val) ? '' : 'none';
-            });
-        });
-        
-        // 分类标签切换
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelector('.tab.active').classList.remove('active');
-                tab.classList.add('active');
-                // 这里可以添加实际的分类筛选逻辑
-            });
-        });
     </script>
 </body>
 </html>
